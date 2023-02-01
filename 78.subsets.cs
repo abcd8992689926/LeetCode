@@ -6,24 +6,35 @@
 
 // @lc code=start
 public class Solution {
-    public IList<IList<int>> Subsets(int[] nums) {        
-        var res = new List<IList<int>>();
-        Array.Sort(nums);
-        Backtrack(res, new List<int>(), nums,0);
-        return res;
-    }
-
-    private void Backtrack(IList<IList<int>> res, List<int> subsets, int[] nums, int start)
-    {
-        res.Add(new List<int>(subsets));
-            
-        for (int i = start; i < nums.Length; i++)
+    public IList<IList<int>> Subsets(int[] nums) {
+        var rs = new List<IList<int>>();
+        for (int i = 0; i < (int)Math.Pow(2, nums.Length); i++)
         {
-            subsets.Add(nums[i]);
-            Backtrack(res, subsets, nums, i + 1);
-            subsets.RemoveAt(subsets.Count - 1);
+            rs.Add(GetItems(TransformToBoolArray(i, nums.Length), nums));
         }
-    }    
+        return rs;
+    }
+    private List<int> GetItems(bool[] boolArray, int[] nums)
+    {
+        var rs = new List<int>();
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (boolArray[i]) rs.Add(nums[i]);
+        }
+        return rs;
+    }
+    private bool[] TransformToBoolArray(int n, int length)
+    {
+        var rs = new bool[length];
+        var index = length - 1;
+        while(n > 0)
+        {
+            rs[index] = n % 2 == 1;
+            n /= 2;
+            index--;
+        }
+        return rs;
+    }
 }
 // @lc code=end
 
