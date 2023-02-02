@@ -6,34 +6,23 @@
 
 // @lc code=start
 public class Solution {
-    public IList<IList<int>> Subsets(int[] nums) {
-        var rs = new List<IList<int>>();
-        for (int i = 0; i < (int)Math.Pow(2, nums.Length); i++)
-        {
-            rs.Add(GetItems(TransformToBoolArray(i, nums.Length), nums));
-        }
-        return rs;
-    }
-    private List<int> GetItems(bool[] boolArray, int[] nums)
-    {
+    public IList<IList<int>> Subsets(int[] nums) {        
+        var res = new List<IList<int>>();
         var rs = new List<int>();
-        for (int i = 0; i < nums.Length; i++)
-        {
-            if (boolArray[i]) rs.Add(nums[i]);
+        res.Add(rs);
+        foreach(var x in nums){  
+            rs = new List<int>();
+            rs.Add()
+            var tmp=new List<int>();
+            foreach(var xx in res){
+                tmp.Add(xx+x);
+            }
+            
+            rs.AddRange(tmp);
+            res.Add(rs);
+            rs = new List<int>();
         }
-        return rs;
-    }
-    private bool[] TransformToBoolArray(int n, int length)
-    {
-        var rs = new bool[length];
-        var index = length - 1;
-        while(n > 0)
-        {
-            rs[index] = n % 2 == 1;
-            n /= 2;
-            index--;
-        }
-        return rs;
+        return res;
     }
 }
 // @lc code=end
