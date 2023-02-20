@@ -6,30 +6,44 @@
 
 // @lc code=start
 public class Solution {
-    public bool [] visited=new bool[grid.Length];
     public int NumIslands(char[][] grid) {
         if(grid==null || grid.Length==0 || grid[0].Length==0){
             return 0;
         }
         
-        Array.Fill(visited, false);
+        var visited=new bool[grid.Length,grid[0].Length];
+        var currentLand=0;
+        var bottom=grid.Length-1;
+        var right=grid[0].Length-1;
 
-        foreach(var v in visited){
-            if(v==true){
-                continue;
+        for(var x=0; x<grid.Length; ++x){
+            for(var xx=0; xx<grid[x].Length; ++xx){
+                if(visited[x,xx]==true){
+                    continue;
+                }
+                
+                if(grid[x][xx]=='1'){
+                    currentLand++;
+                    DFS(x, xx);
+                }
+                visited[x,xx]=true;
             }
-            DFS(v, grid);
         }
-    }
-    public void DFS(int c, char[] grid){
-        if(visited[c]==true){
-            return;
+        
+        void DFS(int x, int xx){
+            if(x<0 || xx<0 || x>bottom || xx>right || visited[x,xx]==true || grid[x][xx]=='0'){
+                return;
+            }
+            
+            visited[x,xx]=true;
+            
+            DFS(x-1, xx);
+            DFS(x+1, xx);
+            DFS(x, xx-1);
+            DFS(x, xx+1);
         }
-        visited[c]=true;
 
-        foreach(var x in grid){
-            DFS(x, grid);
-        }
+        return currentLand;
     }
 }
 // @lc code=end
