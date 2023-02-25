@@ -7,16 +7,18 @@
 // @lc code=start
 public class Solution {
     public int FindLengthOfLCIS(int[] nums) {
+        if(nums==null||nums.Length==0){
+            return 0;
+        }
         List<int> rs=new List<int>();
-        int max=0;
+        int max=1;
         rs.Add(nums[0]);
         for(var x=1; x<nums.Length; ++x){
-            int []c=new int[]{rs.Last()+1,rs.Last()-1};
-            if(c.Contains(nums[x])==false){
+            if(nums[x]>rs.Last()&&nums[x]!=rs.Last()){
                 rs.Add(nums[x]);
+                max=Math.Max(max, rs.Count);
                 continue;
             }
-            max=Math.Max(max, rs.Count);
             rs=new List<int>{nums[x]};
         }
         return max;
