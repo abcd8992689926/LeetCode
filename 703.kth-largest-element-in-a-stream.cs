@@ -6,18 +6,31 @@
 
 // @lc code=start
 public class KthLargest {
-    public List<List<int>> c=new List<List<int>>();
+    private List<int> c=new List<int>();
+    private int l=0;
     public KthLargest(int k, int[] nums) {
-        c.Add(new List<int>());
-        c[0].Add(k);
-        foreach(var x in nums){
-            Add(x);
+        this.l=k;
+        Array.Sort(nums, (a, b) => b - a);
+        int end=nums.Length;
+        if(k<nums.Length){
+            end=k;
         }
+        for(var x=0; x<nums.Length; ++x){
+            c.Add(nums[x]);
+        }
+        //c.AddRange(nums[0]);
+        //sort();
     }
-    
     public int Add(int val) {
-        
-        return 0;
+        c.Add(val);
+        //sort();
+        return c.Last();
+    }
+    private void sort(){
+        //c.Sort((a,b)=>b.CompareTo(a));
+        if(c.Count>this.l){
+            c=c.GetRange(0,this.l);
+        }
     }
 }
 
