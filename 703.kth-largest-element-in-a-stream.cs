@@ -25,17 +25,18 @@ public class KthLargest {
         this.current=c.Last();
     }
     public int Add(int val) {
-        if(this.current<val){
+        if(this.current<val||c.Count<this.l){
             c.Add(val);
             sort();
         }
         return c.First();
     }
     private void sort(){
+        c.Sort();
         if(c.Count>this.l){
-            c.Sort();
             c=c.GetRange(c.Count-this.l,this.l);
         }
+        this.current=c.First();
     }
 }
 /**
