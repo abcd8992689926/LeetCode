@@ -8,8 +8,12 @@
 public class KthLargest {
     private List<int> c=new List<int>();
     private int l=0;
+    private int current=int.MinValue;
     public KthLargest(int k, int[] nums) {
         this.l=k;
+        if(nums.Length==0){
+            return;
+        }
         Array.Sort(nums, (a, b) => b - a);
         int end=nums.Length;
         if(k<nums.Length){
@@ -18,22 +22,22 @@ public class KthLargest {
         for(var x=0; x<nums.Length; ++x){
             c.Add(nums[x]);
         }
-        //c.AddRange(nums[0]);
-        //sort();
+        this.current=c.Last();
     }
     public int Add(int val) {
-        c.Add(val);
-        //sort();
-        return c.Last();
+        if(this.current<val){
+            c.Add(val);
+            sort();
+        }
+        return c.First();
     }
     private void sort(){
-        //c.Sort((a,b)=>b.CompareTo(a));
         if(c.Count>this.l){
-            c=c.GetRange(0,this.l);
+            c.Sort();
+            c=c.GetRange(c.Count-this.l,this.l);
         }
     }
 }
-
 /**
  * Your KthLargest object will be instantiated and called as such:
  * KthLargest obj = new KthLargest(k, nums);
