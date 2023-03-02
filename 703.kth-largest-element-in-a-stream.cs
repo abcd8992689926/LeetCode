@@ -5,38 +5,24 @@
  */
 
 // @lc code=start
-public class KthLargest {
-    private List<int> c=new List<int>();
-    private int l=0;
-    private int current=int.MinValue;
-    public KthLargest(int k, int[] nums) {
-        this.l=k;
-        if(nums.Length==0){
-            return;
+public class KthLargest{
+    private readonly int _k;
+    private PriorityQueue<int, int> queue = new();
+    public KthLargest(int k, int[] nums)
+    {
+        _k = k;
+        for (var x=0; x<nums.Length;++x)
+        {
+            Add(nums[x]);
         }
-        Array.Sort(nums, (a, b) => b - a);
-        int end=nums.Length;
-        if(k<nums.Length){
-            end=k;
-        }
-        for(var x=0; x<nums.Length; ++x){
-            c.Add(nums[x]);
-        }
-        this.current=c.Last();
     }
+
     public int Add(int val) {
-        if(this.current<val||c.Count<this.l){
-            c.Add(val);
-            sort();
-        }
-        return c.First();
-    }
-    private void sort(){
-        c.Sort();
-        if(c.Count>this.l){
-            c=c.GetRange(c.Count-this.l,this.l);
-        }
-        this.current=c.First();
+        queue.Enqueue(val, val);
+
+        if (queue.Count > _k) queue.Dequeue();
+
+        return queue.Peek();
     }
 }
 /**
