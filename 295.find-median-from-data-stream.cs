@@ -45,28 +45,3 @@ public class MedianFinder {
  * double param_2 = obj.FindMedian();
  */
 // @lc code=end
-
-
-MedianFinder();
-addNum(6);      //current l=[6]  s=[] 1
-findMedian();   //6
-addNum(10);     //current l=[6]  s=[10] 2
-findMedian();   //8
-addNum(2);      //current l=[6,2]  s=[10]
-findMedian();   //6
-addNum(6);      //current l=[6,2]  s=[6,10]
-findMedian();   //6
-addNum(5);      //current l=[6,5,2]  s=[6,10]
-findMedian();   //6
-addNum(0);      //current l=[5,2,0]  s=[6,6,10]
-findMedian();   //5.5
-addNum(6);      //current l=[6,5,2,0]  s=[6,6,10]
-findMedian();   //6
-addNum(3);      //current l=[5,3,2,0]  s=[6,6,6,10]
-findMedian();   //5.5
-addNum(1);      //current l=[5,3,2,1,0]  s=[6,6,6,10]
-findMedian();   //5 0,1,2,3,5,6,6,6,10
-addNum(0);      //current l=[3,2,1,0,0]  s=[5,6,6,6,10]
-findMedian();   //4 0,0,0,2,3,5,6,6,6,10
-addNum(0);      //current l=[]
-findMedian();   //3
