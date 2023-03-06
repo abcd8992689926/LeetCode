@@ -12,10 +12,11 @@ public class Solution {
         for(var x=0; x<strs.Length; ++x){
             var val=strs[x].ToCharArray();
             Array.Sort(val);
-            if(d.ContainsKey(val.ToString())){
-                d[val].Add(strs[x]);
+            var tmp=new string(val);
+            if(d.ContainsKey(tmp)){
+                d[tmp].Add(strs[x]);
             }else{
-                d.Add(val, new List<string>{strs[x]});
+                d.Add(tmp, new List<string>{strs[x]});
             }
         }
         foreach(var x in d){
