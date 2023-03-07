@@ -18,7 +18,7 @@ public class Solution {
                 r+=d[tmp];
             }
             if(d.ContainsKey(sum)){
-                d[sum]++;
+                d[sum]=d[sum]++;
             }else{
                 d.Add(sum, 1);
             }
@@ -27,5 +27,3 @@ public class Solution {
     }
 }
 // @lc code=end
-
-//Input: nums = [1, 2, 3, 4], k = 5
