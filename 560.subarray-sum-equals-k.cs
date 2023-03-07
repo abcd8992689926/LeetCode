@@ -10,7 +10,7 @@ public class Solution {
         var r=0;
         var sum=0;
         var d=new Dictionary<int,int>();
-        d.Add(1,1);
+        d.Add(0,1);
         for(var x=0; x<nums.Length; ++x){
             sum+=nums[x];
             int tmp=sum-k;
@@ -18,7 +18,7 @@ public class Solution {
                 r+=d[tmp];
             }
             if(d.ContainsKey(sum)){
-                d[sum]=d[sum]++;
+                d[sum]++;
             }else{
                 d.Add(sum, 1);
             }
