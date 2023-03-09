@@ -8,7 +8,7 @@
 public class Solution {
     public IList<IList<long>> SplitPainting(int[][] segments) {
         var r = new List<IList<long>>();
-        var d = new Dictionary<long,long>();
+        var d = new SortedDictionary<long,long>();
         var s=0L;
         var p=0L;
         for(var x=0; x<segments.Length; ++x){
