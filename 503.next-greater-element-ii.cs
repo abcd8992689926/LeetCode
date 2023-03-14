@@ -14,14 +14,14 @@ public class Solution {
         Array.Fill(r, -1);
         for(var x=0; x<l*2; ++x){
             var i=x%l;
-            while(stack.Count>0&&r[stack.Peek()]<r[i]){
+            while(stack.Count>0&&nums[stack.Peek()]<nums[i]){
                 r[stack.Pop()]=nums[i];
             }
             if(i<l){
                 stack.Push(i);
             }
-            return r;
         }
+        return r;
     }
 }
 // @lc code=end
