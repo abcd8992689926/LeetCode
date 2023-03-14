@@ -6,20 +6,17 @@
 
 // @lc code=start
 public class Solution {
-    private Queue<int> queue=new Queue<int>();
     public int[] NextGreaterElements(int[] nums) {
         var l=nums.Length;
-        var stack=new Stack<int>();
-        int[] r=new int[l];
+        var r=new int[l];
+        var s=new Stack<int>();
         Array.Fill(r, -1);
         for(var x=0; x<l*2; ++x){
             var i=x%l;
-            while(stack.Count>0&&nums[stack.Peek()]<nums[i]){
-                r[stack.Pop()]=nums[i];
+            while(s.Count>0&&nums[s.Peek()]<nums[i]){
+                r[s.Pop()]=nums[i];
             }
-            if(i<l){
-                stack.Push(i);
-            }
+            s.Push(i);
         }
         return r;
     }
